@@ -5,7 +5,7 @@ import pg from "pg";
 import cors from 'cors';
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 const db = new pg.Client({
   user: process.env.DB_USER,
@@ -30,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(cors());
+
 
 // Add middleware to log requests
 app.use((req, res, next) => {
@@ -105,6 +106,7 @@ app.delete('/api/notes/:id', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running on port ${port}.`);
 });
+
