@@ -29,7 +29,13 @@ db.connect((err) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
-app.use(cors());
+const corsOptions = {
+  origin: ['http://main.d3910mfs1xart7.amplifyapp.com', 'https://main.d3910mfs1xart7.amplifyapp.com'],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+};
+app.use(cors(corsOptions));
+
 
 
 // Add middleware to log requests
